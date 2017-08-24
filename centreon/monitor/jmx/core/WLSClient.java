@@ -24,6 +24,7 @@ package centreon.monitor.jmx.core;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
 
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.CommandLineParser;
@@ -127,7 +128,7 @@ public class WLSClient {
 	//System.out.println(monitor + "=" + filter + "," + vwarning + "," + vcritical);
 	params.put(monitor, filter + "," + vwarning + "," + vcritical);
         String[] ret = manager.process(params);
-	System.out.println( String.join("|", ret ));
+	System.out.println( String.join("|", Arrays.copyOfRange(ret,1,ret.length )));
 	System.exit(Integer.valueOf(ret[0]));
     }
     private static void help() {
