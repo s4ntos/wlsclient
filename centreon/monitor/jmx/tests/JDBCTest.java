@@ -73,6 +73,7 @@ public class JDBCTest extends TestUtils implements Test {
         String prefix = "datasource active count: ";
 
         // Performance data
+        String state;
         int capacity;
         int activeCount;
         int waitingCount;
@@ -88,6 +89,7 @@ public class JDBCTest extends TestUtils implements Test {
             for (ObjectName datasourceRuntime : jdbcDataSourceRuntimeMbeans) {
                 String datasourceName = (String)proxy.getAttribute(datasourceRuntime, "Name");
                 if (datasources.containsKey("*") || datasources.containsKey(datasourceName)) {
+                    state = (String)proxy.getAttribute(datasourceRuntime, "State");
                     capacity = (Integer)proxy.getAttribute(datasourceRuntime, "CurrCapacity");
                     activeCount = (Integer)proxy.getAttribute(datasourceRuntime, "ActiveConnectionsCurrentCount");
                     waitingCount = (Integer)proxy.getAttribute(datasourceRuntime, "WaitingForConnectionCurrentCount");
@@ -104,6 +106,10 @@ public class JDBCTest extends TestUtils implements Test {
                         message.add(datasourceName + " (" + waitingCount + ")");
                         code = (testCode > code) ? testCode : code;
                     }
+                    if ( ! state.equals("Running") ) {
+			message.add(datasourceName + " in CRITICAL State)");
+			code = Status.CRITICAL.getCode();
+		    } 
                 }
             }
         } catch (Exception e) {
