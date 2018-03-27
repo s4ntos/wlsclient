@@ -39,9 +39,8 @@ the current options are available.
 >  -m,--monitor <arg>    monitor type options are: thread-pool (default),
 >                        jta, jvm, jdbc, jms-runtime, component, jms-queue
 >  -p,--port <arg>       Port to connect to
->  -P,--password <arg>   weblogic password
->     --protocol <arg>   protocol to use: t3 (default), t3s
->  -t,--protocol <arg>   Protocol
+>  -t --protocol <arg>   protocol to use: t3 (default), t3s
 >  -U,--username <arg>   weblogic username
+>  -P,--password <arg>   weblogic password
 >  -w,--warning <arg>    warning threshold
 ```
