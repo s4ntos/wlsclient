@@ -29,7 +29,7 @@ The following jars need to be retrieved from the weblogic install
 - wlthint3client.jat
 
 the current options are available.
-
+```
 > usage: WLSClient
 >  -c,--critical <arg>   critical threshold
 >  -d,--debug            Debug
@@ -44,3 +44,4 @@ the current options are available.
 >  -t,--protocol <arg>   Protocol
 >  -U,--username <arg>   weblogic username
 >  -w,--warning <arg>    warning threshold
+```
